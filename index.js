@@ -4,8 +4,18 @@ const emotionRadios = document.getElementById('emotion-radios')
 const getImageBtn = document.getElementById('get-image-btn')
 const gifsOnlyOption = document.getElementById('gifs-only-option')
 
+emotionRadios.addEventListener('change', highlightCheckedOption)
 
 getImageBtn.addEventListener('click', getMatchingCatsArray)
+
+function highlightCheckedOption(e) {
+    const radios = document.getElementsByClassName("radio")
+    for (let radio of radios) {
+        radio.classList.remove("highlight")
+    }
+
+    document.getElementById(e.target.id).parentElement.classList.add("highlight")
+}
 
 function getMatchingCatsArray() {
     if (document.querySelector('input[type="radio"]:checked')) {
@@ -23,15 +33,12 @@ function getMatchingCatsArray() {
     }
 }
 
-emotionRadios.addEventListener('change', highlightCheckedOption)
+function getsSingleCatObjects() {
+    const catsArray = getMatchingCatsArray()
 
-function highlightCheckedOption(e) {
-    const radios = document.getElementsByClassName("radio")
-    for (let radio of radios) {
-        radio.classList.remove("highlight")
+    if (catsArray.length === 1) {
+        console.log(catsArray[0])
     }
-
-    document.getElementById(e.target.id).parentElement.classList.add("highlight")
 }
 
 function getEmotionsArray(cats) {
